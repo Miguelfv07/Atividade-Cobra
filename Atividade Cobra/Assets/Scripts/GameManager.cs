@@ -21,4 +21,15 @@ public class GameManager : MonoBehaviour
         UpdateScore(0);
     }
 
+    public void UpdateScore(int points)
+    {
+        score += points;
+        ScoreText.text = "SCORE: " + score.ToString();
+        if (score > highScore)
+        {
+            highScore = score;
+            HighScoreText.text = "HIGH SCORE: " + highScore.ToString();
+        }
+    }
+
 }
