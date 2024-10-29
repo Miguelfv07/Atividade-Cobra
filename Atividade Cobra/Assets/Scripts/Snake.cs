@@ -50,4 +50,23 @@ public class Snake : MonoBehaviour
             direction = newdirection;
         }
     }
+
+    void Move()
+    {
+        if (Time.time > changeCellTime)
+        {
+            for (int i = body.Count - 1; i > 0; i--)
+            {
+                body[i].position = body[i - 1].position;
+            }
+            if (body.Count > 0) body[0].position = (Vector2)transform.position;
+
+            transform.position += (Vector3)direction * cellSize;
+
+            changeCellTime = Time.time + 1 / speed;
+            cellIndex = transform.position / cellSize;
+
+            CheckWallWrapAround();
+        }
+    }
 }
