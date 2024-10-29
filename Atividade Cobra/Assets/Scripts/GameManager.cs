@@ -37,4 +37,12 @@ public class GameManager : MonoBehaviour
         gameOverText.gameObject.SetActive(true);
     }
 
+    public void Restart()
+    {
+        score = 0;
+        UpdateScore(0);
+        snake.Restart();
+        gameOverText.gameObject.SetActive(false);
+    }
+
 }
