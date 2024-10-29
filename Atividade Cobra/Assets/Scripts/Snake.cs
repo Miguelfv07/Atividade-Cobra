@@ -69,4 +69,17 @@ public class Snake : MonoBehaviour
             CheckWallWrapAround();
         }
     }
+
+    void CheckWallWrapAround()
+    {
+        if (transform.position.x > gameWidth / 2)
+            transform.position = new Vector3(-gameWidth / 2 + 0.01f, transform.position.y, transform.position.z);
+        else if (transform.position.x < -gameWidth / 2)
+            transform.position = new Vector3(gameWidth / 2 - 0.01f, transform.position.y, transform.position.z);
+
+        if (transform.position.y > gameHeight / 2)
+            transform.position = new Vector3(transform.position.x, -gameHeight / 2 + 0.01f, transform.position.z);
+        else if (transform.position.y < -gameHeight / 2)
+            transform.position = new Vector3(transform.position.x, gameHeight / 2 - 0.01f, transform.position.z);
+    }
 }
