@@ -88,6 +88,21 @@ public class Snake : MonoBehaviour
         gameManager.UpdateScore(1);
     }
 
+    public void Restart()
+    {
+        gameOver = false;
+
+
+        for (int i = 0; i < body.Count; ++i)
+        {
+            Destroy(body[i].gameObject);
+        }
+        body.Clear();
+
+
+        transform.position = Vector3.zero;
+    }
+
     void Move()
     {
         if (Time.time > changeCellTime)
