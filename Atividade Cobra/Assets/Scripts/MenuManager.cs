@@ -13,4 +13,9 @@ public class MenuManager : MonoBehaviour
     public TMP_InputField speedInput;
     public GameObject startButton;
     public GameObject panel;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 }
