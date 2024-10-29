@@ -36,6 +36,19 @@ public class Snake : MonoBehaviour
         CheckBodyCollisions();
     }
 
+    void CheckWallWrapAround()
+    {
+        if (transform.position.x > gameWidth / 2)
+            transform.position = new Vector3(-gameWidth / 2 + 0.01f, transform.position.y, transform.position.z);
+        else if (transform.position.x < -gameWidth / 2)
+            transform.position = new Vector3(gameWidth / 2 - 0.01f, transform.position.y, transform.position.z);
+
+        if (transform.position.y > gameHeight / 2)
+            transform.position = new Vector3(transform.position.x, -gameHeight / 2 + 0.01f, transform.position.z);
+        else if (transform.position.y < -gameHeight / 2)
+            transform.position = new Vector3(transform.position.x, gameHeight / 2 - 0.01f, transform.position.z);
+    }
+
     void ChangeDirection()
     {
         Vector2 newdirection = Vector2.zero;
@@ -49,6 +62,16 @@ public class Snake : MonoBehaviour
         {
             direction = newdirection;
         }
+    }
+
+    public void GrowBody()
+    {
+        Vector2 position = transform.position;
+        if (body.Count != 0)
+            position = body[body.Count - 1].position;
+
+        body.Add(Instantiate(bodyPrefab, position, Quaternion.identity).transform);
+        gameManager.UpdateScore(1);
     }
 
     void Move()
@@ -70,16 +93,7 @@ public class Snake : MonoBehaviour
         }
     }
 
-    void CheckWallWrapAround()
-    {
-        if (transform.position.x > gameWidth / 2)
-            transform.position = new Vector3(-gameWidth / 2 + 0.01f, transform.position.y, transform.position.z);
-        else if (transform.position.x < -gameWidth / 2)
-            transform.position = new Vector3(gameWidth / 2 - 0.01f, transform.position.y, transform.position.z);
 
-        if (transform.position.y > gameHeight / 2)
-            transform.position = new Vector3(transform.position.x, -gameHeight / 2 + 0.01f, transform.position.z);
-        else if (transform.position.y < -gameHeight / 2)
-            transform.position = new Vector3(transform.position.x, gameHeight / 2 - 0.01f, transform.position.z);
-    }
+
+
 }
