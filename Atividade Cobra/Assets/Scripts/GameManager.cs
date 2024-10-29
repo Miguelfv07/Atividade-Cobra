@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Snake snake;
+    public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI HighScoreText;
+    public TextMeshProUGUI gameOverText;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private int score = 0;
+    private int highScore = 0;
+
 }
