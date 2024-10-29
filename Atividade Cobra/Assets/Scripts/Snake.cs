@@ -151,5 +151,55 @@ public class Snake : MonoBehaviour
         CreateWalls(width, height);
     }
 
+    void CreateWalls(float width, float height)
+    {
+
+        gameWidth = width;
+        gameHeight = height;
+
+
+        int cellX = Mathf.FloorToInt(width / cellSize / 2);
+        int cellY = Mathf.FloorToInt(height / cellSize / 2);
+
+
+        wallGrid = new int[cellX * 2 + 1, cellY * 2 + 1];
+
+
+        foreach (GameObject wall in GameObject.FindGameObjectsWithTag("Wall"))
+        {
+            Destroy(wall);
+        }
+
+
+        for (int i = -cellX; i <= cellX; i++)
+        {
+            Vector2 top = new Vector2(i * cellSize, cellY * cellSize);
+            Vector2 bottom = new Vector2(i * cellSize, -cellY * cellSize);
+
+            Instantiate(wallPrefab, top, Quaternion.identity).tag = "Wall";
+            Instantiate(wallPrefab, bottom, Quaternion.identity).tag = "Wall";
+
+
+            wallGrid[i + cellX, cellY] = 1;
+            wallGrid[i + cellX, 0] = 1;
+        }
+
+
+        for (int i = -cellY; i <= cellY; i++)
+        {
+            Vector2 left = new Vector2(-cellX * cellSize, i * cellSize);
+            Vector2 right = new Vector2(cellX * cellSize, i * cellSize);
+
+            Instantiate(wallPrefab, left, Quaternion.identity).tag = "Wall";
+            Instantiate(wallPrefab, right, Quaternion.identity).tag = "Wall";
+
+
+            wallGrid[0, i + cellY] = 1;
+            wallGrid[cellX * 2, i + cellY] = 1;
+        }
+    }
+
+
+
 
 }
