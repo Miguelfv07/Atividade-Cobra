@@ -24,4 +24,31 @@ public class Food : MonoBehaviour
             snake.GrowBody();
         }
     }
+
+    void SpawnFood()
+    {
+
+        float width = snake.GetWidth();
+        float height = snake.GetHeight();
+
+        Vector2 randomPosition;
+
+
+        do
+        {
+            float x = Random.Range(-width / 2 + snake.cellSize / 2, width / 2 - snake.cellSize / 2);
+            float y = Random.Range(-height / 2 + snake.cellSize / 2, height / 2 - snake.cellSize / 2);
+            randomPosition = new Vector2(x, y);
+        }
+        while (IsPositionOccupied(randomPosition));
+
+
+        if (currentFood != null)
+        {
+            Destroy(currentFood.gameObject);
+        }
+
+
+        currentFood = Instantiate(foodPrefab, randomPosition, Quaternion.identity).transform;
+    }
 }
