@@ -135,5 +135,10 @@ public class Snake : MonoBehaviour
         return gameWidth;
     }
 
+    public float GetHeight()
+    {
+        return gameHeight;
+    }
+
 
 }
