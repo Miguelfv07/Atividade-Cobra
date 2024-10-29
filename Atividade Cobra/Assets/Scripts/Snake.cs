@@ -22,4 +22,17 @@ public class Snake : MonoBehaviour
     {
         direction = Vector2.up;
     }
+
+    void Update()
+    {
+        if (gameOver)
+        {
+            if (Input.GetKeyDown(KeyCode.R)) gameManager.Restart();
+            return;
+        }
+
+        ChangeDirection();
+        Move();
+        CheckBodyCollisions();
+    }
 }
