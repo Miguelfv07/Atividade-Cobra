@@ -107,7 +107,13 @@ public class Snake : MonoBehaviour
         }
     }
 
+    void GameOver()
+    {
+        gameOver = true;
+        gameManager.GameOver();
 
 
+    }
 
-}
+
+    }
