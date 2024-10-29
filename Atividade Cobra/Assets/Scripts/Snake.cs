@@ -145,5 +145,11 @@ public class Snake : MonoBehaviour
         speed = newSpeed;
     }
 
+    public void SetGameArea(float width, float height)
+    {
+
+        CreateWalls(width, height);
+    }
+
 
 }
