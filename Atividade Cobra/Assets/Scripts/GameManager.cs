@@ -13,4 +13,12 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     private int highScore = 0;
 
+    private void Start()
+    {
+        gameOverText.gameObject.SetActive(false);
+        ScoreText.gameObject.SetActive(true);
+        HighScoreText.gameObject.SetActive(true);
+        UpdateScore(0);
+    }
+
 }
