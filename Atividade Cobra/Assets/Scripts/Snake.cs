@@ -140,5 +140,10 @@ public class Snake : MonoBehaviour
         return gameHeight;
     }
 
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
 
 }
