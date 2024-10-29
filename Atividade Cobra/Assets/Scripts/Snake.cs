@@ -17,4 +17,9 @@ public class Snake : MonoBehaviour
     private float gameHeight;
     private bool gameOver = false;
     private int[,] wallGrid;
+
+    private void Start()
+    {
+        direction = Vector2.up;
+    }
 }
