@@ -18,4 +18,27 @@ public class MenuManager : MonoBehaviour
     {
         Instance = this;
     }
+
+    public void StartGame()
+    {
+        float width, height, speed;
+
+        if (TryGetInputValues(out width, out height, out speed))
+        {
+
+            snake.SetGameArea(width, height);
+            snake.SetSpeed(speed);
+
+
+            panel.SetActive(false);
+            widthInput.gameObject.SetActive(false);
+            heightInput.gameObject.SetActive(false);
+            speedInput.gameObject.SetActive(false);
+            startButton.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("Por favor, insira valores válidos.");
+        }
+    }
 }
