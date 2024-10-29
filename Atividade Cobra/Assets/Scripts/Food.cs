@@ -51,4 +51,23 @@ public class Food : MonoBehaviour
 
         currentFood = Instantiate(foodPrefab, randomPosition, Quaternion.identity).transform;
     }
+
+    bool IsPositionOccupied(Vector2 position)
+    {
+
+        if ((Vector2)snake.transform.position == position)
+        {
+            return true;
+        }
+
+
+        foreach (Transform segment in snake.body)
+        {
+            if ((Vector2)segment.position == position)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
