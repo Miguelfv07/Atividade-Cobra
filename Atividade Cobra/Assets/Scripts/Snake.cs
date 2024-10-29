@@ -49,6 +49,20 @@ public class Snake : MonoBehaviour
             transform.position = new Vector3(transform.position.x, gameHeight / 2 - 0.01f, transform.position.z);
     }
 
+    void CheckBodyCollisions()
+    {
+        if (body.Count < 3) return;
+        for (int i = 0; i < body.Count; i++)
+        {
+            Vector2 index = body[i].position / cellSize;
+            if (Mathf.Abs(index.x - cellIndex.x) < 0.00001f && Mathf.Abs(index.y - cellIndex.y) < 0.00001f)
+            {
+                GameOver();
+                break;
+            }
+        }
+    }
+
     void ChangeDirection()
     {
         Vector2 newdirection = Vector2.zero;
