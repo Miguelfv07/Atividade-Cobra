@@ -38,7 +38,31 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Por favor, insira valores válidos.");
+            Debug.LogError(" insira valores válidos.");
         }
+    }
+
+    private bool TryGetInputValues(out float width, out float height, out float speed)
+    {
+        width = height = speed = 0;
+
+
+        string[] inputs = { widthInput.text, heightInput.text, speedInput.text };
+        float[] values = { width, height, speed };
+
+        for (int i = 0; i < inputs.Length; i++)
+        {
+            if (!float.TryParse(inputs[i], out values[i]))
+            {
+                return false;
+            }
+        }
+
+
+        width = values[0];
+        height = values[1];
+        speed = values[2];
+
+        return true;
     }
 }
