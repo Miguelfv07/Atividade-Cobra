@@ -7,4 +7,9 @@ public class Food : MonoBehaviour
     public Transform foodPrefab;
     public Snake snake;
     private Transform currentFood;
+
+    private void Start()
+    {
+        SpawnFood();
+    }
 }
