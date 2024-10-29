@@ -12,4 +12,16 @@ public class Food : MonoBehaviour
     {
         SpawnFood();
     }
+
+    void Update()
+    {
+
+        Vector2 index = currentFood.position / snake.cellSize;
+        if (Mathf.Abs(index.x - snake.cellIndex.x) < 0.5f && Mathf.Abs(index.y - snake.cellIndex.y) < 0.5f)
+        {
+
+            SpawnFood();
+            snake.GrowBody();
+        }
+    }
 }
