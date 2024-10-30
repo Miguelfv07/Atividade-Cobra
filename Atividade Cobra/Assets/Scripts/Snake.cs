@@ -2,27 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// Classe Snake: Gerencia o comportamento da cobra, incluindo movimentação, crescimento, colisões e reinício.
 public class Snake : MonoBehaviour
 {
+    // Referências para os prefabs do corpo e das paredes da cobra.
     public Transform bodyPrefab;
     public Transform wallPrefab;
+
+    // Referência ao GameManager, para comunicação entre a cobra e o sistema de pontuação.
     public GameManager gameManager;
+    // Direção atual de movimento da cobra.
     private Vector2 direction;
+    // Controla o intervalo entre movimentos da cobra.
     private float changeCellTime = 0;
+    // Lista que armazena as partes do corpo da cobra.
     public List<Transform> body = new List<Transform>();
+    // Velocidade da cobra.
     public float speed = 10.0f;
+    // Tamanho de cada célula no grid
     public float cellSize = 0.3f;
+    // Índice da célula onde a cabeça da cobra está atualmente.
     public Vector2 cellIndex = Vector2.zero;
+    // Largura e altura da área de jogo.
     private float gameWidth;
     private float gameHeight;
+    // Indica se o jogo está no estado de "game over".
     private bool gameOver = false;
+    // Grid que define as posições das paredes.
     private int[,] wallGrid;
 
+
+    // Método Start: Inicializa a direção da cobra apontando para cima.
     private void Start()
     {
         direction = Vector2.up;
     }
 
+
+    // Método Update: Controla as atualizações do jogo a cada frame.
     void Update()
     {
         if (gameOver)
@@ -36,6 +54,8 @@ public class Snake : MonoBehaviour
         CheckBodyCollisions();
     }
 
+
+    // Método CheckWallWrapAround: Faz a cabeça da cobra aparecer do outro lado quando sai dos limites do jogo.
     void CheckWallWrapAround()
     {
         if (transform.position.x > gameWidth / 2)
@@ -49,6 +69,8 @@ public class Snake : MonoBehaviour
             transform.position = new Vector3(transform.position.x, gameHeight / 2 - 0.01f, transform.position.z);
     }
 
+
+    // Método CheckBodyCollisions: Verifica se a cabeça colidiu com alguma parte do corpo.
     void CheckBodyCollisions()
     {
         if (body.Count < 3) return;
@@ -63,6 +85,8 @@ public class Snake : MonoBehaviour
         }
     }
 
+
+    // Método ChangeDirection: Altera a direção da cobra com base nas teclas pressionadas.
     void ChangeDirection()
     {
         Vector2 newdirection = Vector2.zero;
@@ -78,6 +102,8 @@ public class Snake : MonoBehaviour
         }
     }
 
+
+    // Método GrowBody: Adiciona uma nova parte ao corpo da cobra.
     public void GrowBody()
     {
         Vector2 position = transform.position;
@@ -89,6 +115,8 @@ public class Snake : MonoBehaviour
         
     }
 
+
+    // Método Restart: Reinicia o jogo, removendo o corpo e redefinindo a posição da cobra.
     public void Restart()
     {
         gameOver = false;
@@ -105,6 +133,7 @@ public class Snake : MonoBehaviour
         transform.position = Vector3.zero;
     }
 
+    // Método Move: Move a cobra em intervalos de tempo controlados.
     void Move()
     {
         if (Time.time > changeCellTime)
@@ -124,6 +153,7 @@ public class Snake : MonoBehaviour
         }
     }
 
+    // Método GameOver: Define o estado de game over e chama o método correspondente no GameManager.
     void GameOver()
     {
         gameOver = true;
@@ -132,27 +162,33 @@ public class Snake : MonoBehaviour
 
     }
 
+
+    // Método GetWidth: Retorna a largura da área de jogo.
     public float GetWidth()
     {
         return gameWidth;
     }
 
+    // Método GetHeight: Retorna a altura da área de jogo.
     public float GetHeight()
     {
         return gameHeight;
     }
 
+    // Método SetSpeed: Altera a velocidade da cobra.
     public void SetSpeed(float newSpeed)
     {
         speed = newSpeed;
     }
-
+    // Método SetGameArea: Define a área de jogo e cria as paredes.
     public void SetGameArea(float width, float height)
     {
 
         CreateWalls(width, height);
     }
 
+
+    // Método CreateWalls: Cria paredes em torno da área de jogo.
     void CreateWalls(float width, float height)
     {
 
