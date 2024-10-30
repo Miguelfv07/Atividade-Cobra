@@ -85,7 +85,8 @@ public class Snake : MonoBehaviour
             position = body[body.Count - 1].position;
 
         body.Add(Instantiate(bodyPrefab, position, Quaternion.identity).transform);
-        gameManager.UpdateScore(1);
+       
+        
     }
 
     public void Restart()
@@ -98,6 +99,7 @@ public class Snake : MonoBehaviour
             Destroy(body[i].gameObject);
         }
         body.Clear();
+        GrowBody();
 
 
         transform.position = Vector3.zero;

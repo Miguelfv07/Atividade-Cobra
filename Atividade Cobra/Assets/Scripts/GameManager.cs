@@ -5,13 +5,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
     public Snake snake;
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI HighScoreText;
     public TextMeshProUGUI gameOverText;
 
-    private int score = 0;
+    public int score = 0;
     private int highScore = 0;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
