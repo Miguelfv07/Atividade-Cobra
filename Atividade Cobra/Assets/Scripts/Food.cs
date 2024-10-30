@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// Classe Food: Gerencia o comportamento dos alimentos no jogo, incluindo geração aleatória e detecção de consumo pela cobra.
 public class Food : MonoBehaviour
 {
+    // Prefab do alimento que será instanciado na cena.
     public Transform foodPrefab;
+    // Referência à cobra, para acessar informações como posição e tamanho das células.
     public Snake snake;
+    // Guarda a referência do alimento atual na cena.
     private Transform currentFood;
 
+
+    // Método Start: Executado ao iniciar a cena. Chama o método para gerar um novo alimento.
     private void Start()
     {
         SpawnFood();
     }
 
+    // Método Update: Verifica a cada frame se a cobra comeu o alimento.
     void Update()
     {
 
@@ -26,6 +34,8 @@ public class Food : MonoBehaviour
         }
     }
 
+
+    // Método SpawnFood: Gera um novo alimento em uma posição aleatória da área de jogo.
     void SpawnFood()
     {
 
@@ -53,6 +63,8 @@ public class Food : MonoBehaviour
         currentFood = Instantiate(foodPrefab, randomPosition, Quaternion.identity).transform;
     }
 
+
+    // Método IsPositionOccupied: Verifica se a posição gerada está ocupada pela cobra ou seu corpo.
     bool IsPositionOccupied(Vector2 position)
     {
 
